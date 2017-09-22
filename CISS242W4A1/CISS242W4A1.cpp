@@ -7,17 +7,15 @@
 #include <iomanip>;
 using namespace std;
 
-struct Division
-{
-	string div_name;
-	double qtr1_sales,
-		qtr2_sales,
-		qtr3_sales,
-		qtr4_sales,
-		annual_sales,
-		qtr_average;
+//Struct that holds values for corporate sales data.
+struct Division {
+	string div_name;		//String to hold the name of the division.
+	double sales[4];		//Array that holds four variables for quarter sales.
+	double annual_sales,	//Holds total annual sales from the quarters.
+		qtr_average;		//Holds value for average sales over quarters. 
 };
 
+//Function prototypes.
 void DisplayCorpInformation(const Division& east, const Division& west, const Division& north, const Division& south);
 void FindTotalAndAverageSales(Division& div);
 void GetDivisionSales(Division& div);
@@ -80,7 +78,9 @@ void DisplayCorpInformation(const Division& east, const Division& west, const Di
 // average for each division.						*	
 //***************************************************
 void FindTotalAndAverageSales(Division& div) {
-	div.annual_sales = (div.qtr1_sales + div.qtr2_sales + div.qtr3_sales + div.qtr4_sales);
+	for (int index = 0; index < 4; index++) {
+		div.annual_sales += div.sales[index];
+	}
 	div.qtr_average = (div.annual_sales / 4);
 }
 
@@ -90,32 +90,8 @@ void FindTotalAndAverageSales(Division& div) {
 // struct.											*	
 //***************************************************
 void GetDivisionSales(Division& div) {
-	cout << "\tFirst quarter: ";
-	cin >> div.qtr1_sales;
-	while (div.qtr1_sales < 0) {
-		cout << "The sales data can't be a negative number.\n"
-			<< "Re-enter the sales data for the first quarter: ";
-		cin >> div.qtr1_sales;
-	}
-	cout << "\tSecond quarter: ";
-	cin >> div.qtr2_sales;
-	while (div.qtr2_sales < 0) {
-		cout << "The sales data can't be a negative number.\n"
-			<< "Re-enter the sales data for the second quarter: ";
-		cin >> div.qtr2_sales;
-	}
-	cout << "\tThird quarter: ";
-	cin >> div.qtr3_sales;
-	while (div.qtr3_sales < 0) {
-		cout << "The sales data can't be a negative number.\n"
-			<< "Re-enter the sales data for the third quarter: ";
-		cin >> div.qtr3_sales;
-	}
-	cout << "\tFourth quarter: ";
-	cin >> div.qtr4_sales;
-	while (div.qtr4_sales < 0) {
-		cout << "The sales data can't be a negative number.\n"
-			<< "Re-enter the sales data for the fourth quarter: ";
-		cin >> div.qtr4_sales;
+	for (int index = 0; index < 4; index++) {
+		cout << "Enter sales for quarter " << (index + 1) << ": ";
+		cin >> div.sales[index];
 	}
 }
