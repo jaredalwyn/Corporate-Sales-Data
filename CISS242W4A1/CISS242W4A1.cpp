@@ -7,17 +7,19 @@
 #include <iomanip>;
 using namespace std;
 
+//Struct that holds values for corporate sales data.
 struct Division
 {
-	string div_name;
-	double qtr1_sales,
-		qtr2_sales,
-		qtr3_sales,
-		qtr4_sales,
-		annual_sales,
-		qtr_average;
+	string div_name;		//String to hold the name of the division.
+	double qtr1_sales,		//Holds value for the first quarter.
+		qtr2_sales,			//Holds value for the second qaurter.
+		qtr3_sales,			//Holds value for the third quarter.
+		qtr4_sales,			//Holds value for the fourth quarter.
+		annual_sales,		//Holds total annual sales from the quarters.
+		qtr_average;		//Holds value for average sales over quarters. 
 };
 
+//Function prototypes.
 void DisplayCorpInformation(const Division& east, const Division& west, const Division& north, const Division& south);
 void FindTotalAndAverageSales(Division& div);
 void GetDivisionSales(Division& div);
